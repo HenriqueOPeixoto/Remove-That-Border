@@ -19,6 +19,14 @@ BOOL CALLBACK ListOpenWindows(HWND hwnd, LPARAM lparam)
     return true;
 }
 
+WindowManager::WindowManager()
+{
+}
+
+WindowManager::~WindowManager()
+{
+}
+
 std::vector<std::wstring> WindowManager::GetOpenWindows()
 {
     std::vector<std::wstring> winTitles;

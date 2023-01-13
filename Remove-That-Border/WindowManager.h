@@ -14,6 +14,8 @@
 class WindowManager
 {
 public:
+	WindowManager();
+	~WindowManager();
 	std::vector<std::wstring> GetOpenWindows();
 
 };
