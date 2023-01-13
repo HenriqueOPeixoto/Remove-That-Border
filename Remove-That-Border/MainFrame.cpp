@@ -1,5 +1,9 @@
 #include "MainFrame.h"
 
+wxBEGIN_EVENT_TABLE(MainFrame, wxFrame)
+    EVT_MENU(wxID_ABOUT, MainFrame::OnAboutPressed)
+wxEND_EVENT_TABLE()
+
 MainFrame::MainFrame() : wxFrame(
 	nullptr, //parent
 	wxID_ANY,  //id
@@ -15,7 +19,7 @@ MainFrame::MainFrame() : wxFrame(
     wxMenu* helpMenu = new wxMenu();
     menu->Append(helpMenu, wxString("Help"));
 
-    wxMenuItem* aboutItem = new wxMenuItem(helpMenu, wxID_ANY, wxString("About..."), wxString("Display about information"));
+    wxMenuItem* aboutItem = new wxMenuItem(helpMenu, wxID_ABOUT, wxString("About..."), wxString("Display about information"));
     helpMenu->Append(aboutItem);
 
     this->SetMenuBar(menu);
@@ -58,4 +62,9 @@ MainFrame::MainFrame() : wxFrame(
 
 MainFrame::~MainFrame()
 {
+}
+
+void MainFrame::OnAboutPressed(wxCommandEvent& evt)
+{
+    wxMessageBox("Remove That Border\nMade by HenriqueOPeixoto\nGithub Repo: github.com/HenriqueOPeixoto/Remove-That-Border", "About", wxICON_INFORMATION);
 }
