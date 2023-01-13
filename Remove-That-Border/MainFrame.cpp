@@ -1,8 +1,8 @@
 #include "MainFrame.h"
 
 wxBEGIN_EVENT_TABLE(MainFrame, wxFrame)
-    EVT_MENU(wxID_ABOUT, MainFrame::OnAboutPressed)
-    EVT_BUTTON(wxID_REFRESH, MainFrame::OnUpdateListPressed)
+EVT_MENU(wxID_ABOUT, MainFrame::OnAboutPressed)
+EVT_BUTTON(wxID_REFRESH, MainFrame::OnUpdateListPressed)
 wxEND_EVENT_TABLE()
 
 MainFrame::MainFrame() : wxFrame(
@@ -40,6 +40,7 @@ MainFrame::MainFrame() : wxFrame(
         wxEXPAND |    // make horizontally stretchable
         wxALL,        //   and make border all around
         10);         // set border width to 10
+    RefreshWindowList();
     wxBoxSizer* button_sizer = new wxBoxSizer(wxHORIZONTAL);
     button_sizer->Add(
         new wxButton(this, wxID_OK, "Remove Border"),
@@ -66,6 +67,18 @@ MainFrame::~MainFrame()
 {
 }
 
+void MainFrame::RefreshWindowList()
+{
+    windowList->Clear();
+
+    std::vector<std::wstring> windows = windowManager.GetOpenWindows();
+
+    for (std::wstring window : windows)
+    {
+        windowList->Append(window);
+    }
+}
+
 void MainFrame::OnAboutPressed(wxCommandEvent& evt)
 {
     wxMessageBox("Remove That Border\nMade by HenriqueOPeixoto\nGithub Repo: github.com/HenriqueOPeixoto/Remove-That-Border", "About", wxICON_INFORMATION);
@@ -73,4 +86,5 @@ void MainFrame::OnAboutPressed(wxCommandEvent& evt)
 
 void MainFrame::OnUpdateListPressed(wxCommandEvent& evt)
 {
+    RefreshWindowList();
 }

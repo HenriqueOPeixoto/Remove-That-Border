@@ -14,6 +14,8 @@ private:
 	WindowManager windowManager;
 	wxListBox* windowList;
 
+	void RefreshWindowList();
+
 	void OnAboutPressed(wxCommandEvent& evt);
 	void OnUpdateListPressed(wxCommandEvent& evt);
 
