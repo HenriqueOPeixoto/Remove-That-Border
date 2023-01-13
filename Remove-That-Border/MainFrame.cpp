@@ -3,6 +3,7 @@
 wxBEGIN_EVENT_TABLE(MainFrame, wxFrame)
 EVT_MENU(wxID_ABOUT, MainFrame::OnAboutPressed)
 EVT_BUTTON(wxID_REFRESH, MainFrame::OnUpdateListPressed)
+EVT_BUTTON(wxID_OK, MainFrame::OnRemoveBorderPressed)
 wxEND_EVENT_TABLE()
 
 MainFrame::MainFrame() : wxFrame(
@@ -71,7 +72,7 @@ void MainFrame::RefreshWindowList()
 {
     windowList->Clear();
 
-    std::vector<std::wstring> windows = windowManager.GetOpenWindows();
+    windows = windowManager.GetOpenWindows();
 
     for (std::wstring window : windows)
     {
@@ -87,4 +88,9 @@ void MainFrame::OnAboutPressed(wxCommandEvent& evt)
 void MainFrame::OnUpdateListPressed(wxCommandEvent& evt)
 {
     RefreshWindowList();
+}
+
+void MainFrame::OnRemoveBorderPressed(wxCommandEvent& evt)
+{
+    windowManager.RemoveBorderFromWindow(windows[windowList->GetSelection()]);
 }

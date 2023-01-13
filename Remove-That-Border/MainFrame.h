@@ -12,12 +12,14 @@ public:
 
 private:
 	WindowManager windowManager;
+	std::vector<std::wstring> windows;
 	wxListBox* windowList;
 
 	void RefreshWindowList();
 
 	void OnAboutPressed(wxCommandEvent& evt);
 	void OnUpdateListPressed(wxCommandEvent& evt);
+	void OnRemoveBorderPressed(wxCommandEvent& evt);
 
 	wxDECLARE_EVENT_TABLE();
 };

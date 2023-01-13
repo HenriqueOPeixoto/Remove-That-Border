@@ -17,6 +17,6 @@ public:
 	WindowManager();
 	~WindowManager();
 	std::vector<std::wstring> GetOpenWindows();
-
+	void RemoveBorderFromWindow(std::wstring windowName);
 };
 

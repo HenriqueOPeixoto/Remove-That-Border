@@ -34,3 +34,18 @@ std::vector<std::wstring> WindowManager::GetOpenWindows()
 
     return winTitles;
 }
+
+void WindowManager::RemoveBorderFromWindow(std::wstring windowName)
+{
+    HWND winHandle = FindWindowW(NULL, windowName.c_str());
+    LONG style = GetWindowLong(winHandle, GWL_STYLE);
+
+    // Remove the border and caption from the window style
+    style &= ~(WS_CAPTION | WS_THICKFRAME | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_SYSMENU);
+
+    // Set the new window style
+    SetWindowLong(winHandle, GWL_STYLE, style);
+
+    // Update the window
+    SetWindowPos(winHandle, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOZORDER | SWP_FRAMECHANGED);
+}
