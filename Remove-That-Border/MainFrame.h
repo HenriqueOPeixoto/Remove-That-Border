@@ -2,6 +2,8 @@
 
 #include "wx/wx.h"
 
+#include "WindowManager.h"
+
 class MainFrame : public wxFrame
 {
 public:
@@ -9,8 +11,12 @@ public:
 	~MainFrame();
 
 private:
+	WindowManager windowManager;
+	wxListBox* windowList;
+
 	void OnAboutPressed(wxCommandEvent& evt);
-	
+	void OnUpdateListPressed(wxCommandEvent& evt);
+
 	wxDECLARE_EVENT_TABLE();
 };
 
